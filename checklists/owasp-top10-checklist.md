@@ -1,82 +1,26 @@
-# 🍊 OWASP Juice Shop – Walkthrough
+# ✅ OWASP Top 10 Checklist (Hands-On Progress)
 
-This document includes a series of solved challenges from OWASP Juice Shop, demonstrating various common web vulnerabilities from the OWASP Top 10 list.
+This checklist tracks my practical experience and understanding of the OWASP Top 10 vulnerabilities using tools like Juice Shop, WebGoat, and custom apps.
+
+| # | Category | Practiced | Notes |
+|--|----------|-----------|-------|
+| 1 | Broken Access Control | ✅ | Admin panel bypass, IDOR exploitation |
+| 2 | Cryptographic Failures | ✅ | Weak JWT secrets, insecure token storage |
+| 3 | Injection (SQL/OS/NoSQL) | ✅ | SQLi login bypass, command injection |
+| 4 | Insecure Design | ✅ | No input validation, exposed logic flaws |
+| 5 | Security Misconfiguration | ✅ | Open directories, default creds |
+| 6 | Vulnerable & Outdated Components | ✅ | Juice Shop intentionally has these |
+| 7 | Identification & Authentication Failures | ✅ | Login bypass, insecure password resets |
+| 8 | Software & Data Integrity Failures | 🔄 | Working on JWT tampering & supply chain |
+| 9 | Security Logging & Monitoring Failures | 🔄 | To simulate in a custom app |
+| 10 | Server-Side Request Forgery (SSRF) | ✅ | Internal API access via image upload tricks |
 
 ---
 
-## 🔓 Login Bypass
-
-**Challenge:** Log in as the administrator without knowing the password.  
-**Vulnerability:** Authentication Bypass / SQL Injection
-
-**Steps:**
-1. Go to login page
-2. Enter payload:  
-   **Username:** `admin'--`  
-   **Password:** (leave blank)
-3. You’re logged in as the admin user.
+✅ = Completed hands-on  
+🔄 = In progress  
+⬜ = Not started
 
 ---
 
-## 🪝 Stored XSS
-
-**Challenge:** Post a review that executes JavaScript when viewed.  
-**Vulnerability:** Stored Cross-Site Scripting (XSS)
-
-**Steps:**
-1. Go to product page and leave a review:
-   ```html
-   <script>alert('XSS')</script>
-
-    View the product page again — the script executes.
-
-🧬 Sensitive Data Exposure
-
-Challenge: View the admin's email and password hash.
-Vulnerability: Information Disclosure
-
-Steps:
-
-    Open Developer Tools → Application → Storage → Local Storage
-
-    Check tokens and user object: email, password, and JWTs are often exposed.
-
-📁 Directory Traversal
-
-Challenge: Access restricted server files.
-Vulnerability: Path Traversal
-
-Steps:
-
-    Go to /ftp/ endpoint
-
-    Try accessing files like:
-
-    /ftp/../../../../etc/passwd
-
-💥 Command Injection
-
-Challenge: Execute a command on the server.
-Vulnerability: Remote Code Execution (RCE)
-
-Steps:
-
-    Find feedback or search input
-
-    Try payloads like:
-
-    ; ping -c 4 127.0.0.1
-
-✅ Tips
-
-    Use Burp Suite to intercept and modify requests
-
-    Keep an eye on hidden APIs with DevTools or ZAP
-
-    Capture flags for each completed challenge in Juice Shop UI
-
-📎 Resources
-
-    Official Juice Shop
-
-    OWASP Cheat Sheet Series
+> This checklist will be updated as I complete more exploit scenarios, code reviews, and test cases.
