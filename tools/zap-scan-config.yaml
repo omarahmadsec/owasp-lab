@@ -1,1 +1,31 @@
+context:
+  name: Juice Shop Context
+  includePaths:
+    - "http://localhost:3000/.*"
+  excludePaths:
+    - "http://localhost:3000/assets/.*"
+
+auth:
+  method: "manual"
+  loggedInIndicator: "Logout"
+  loggedOutIndicator: "Login"
+
+spider:
+  maxChildren: 5
+  recurse: true
+  subtreeOnly: true
+
+ajaxSpider:
+  enabled: true
+  maxCrawlDepth: 5
+  runOnlyIfModernSite: true
+
+activeScan:
+  strength: "HIGH"
+  threshold: "MEDIUM"
+  policy: "Default Policy"
+
+report:
+  format: "HTML"
+  outputPath: "./zap-report.html"
 
